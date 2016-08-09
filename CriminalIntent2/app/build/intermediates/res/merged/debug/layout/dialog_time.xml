@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TimePicker xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_time_TimePicker"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+</TimePicker><!-- From: file:/home/dmitry/Программки%20/CriminalIntent2/app/src/main/res/layout/dialog_time.xml -->
