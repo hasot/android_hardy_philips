@@ -3,38 +3,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <TableRow
+        android:gravity="bottom"
+        android:layout_weight="2">
+        <VideoView
+            android:id="@+id/videoPlayer"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:layout_weight="1"
+            />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:id="@+id/hellomoon_videoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hellomoon_video"
+            android:layout_column="5" />
+    </TableRow>
     <ImageView
         android:src="@drawable/armstrong_on_moon"
         android:contentDescription="@string/hellomoon_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="centerInside"
-        android:layout_weight="1"
-        />
-    <VideoView
-        android:id="@+id/videoPlayer"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="centerInside"
         android:layout_weight="2"
-
         />
+
     <TableRow
         android:gravity="center|bottom"
         android:layout_weight="0">
+
         <Button
             android:id="@+id/hellomoon_playButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hellomoon_play"
-            />
+            android:layout_column="5" />
+
+        <Button
+            android:id="@+id/hellomoon_pauseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:text="@string/hellomoon_pause"
+            android:layout_column="14" />
 
         <Button
             android:id="@+id/hellomoon_stopButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hellomoon_stop"
-            />
+            android:layout_column="22" />
     </TableRow>
+
 </TableLayout>
