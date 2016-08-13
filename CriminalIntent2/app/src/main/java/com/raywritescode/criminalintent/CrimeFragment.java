@@ -2,15 +2,19 @@ package com.raywritescode.criminalintent;
 import java.util.Date;
 import java.util.UUID;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NavUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -26,7 +30,7 @@ public  class CrimeFragment extends Fragment {
 		private static final String DIALOG_DATE = "date";
 		private static final String DIALOG_TIME = "time";
 		private static final int REQUEST_DATE = 0;
-		private static final int REQUEST_TIME = 0;
+		private static final int REQUEST_TIME = 1;
 
 		private Crime mCrime;
 		private EditText mTitleField;
@@ -50,12 +54,22 @@ public  class CrimeFragment extends Fragment {
 			UUID crimeId = (UUID)getArguments().getSerializable(EXTRA_CRIME_ID);
 
 			mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
+			//Включаем метод для UP
+			setHasOptionsMenu(true);
 		}
-
+		@TargetApi(11)
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup parent,
 								 Bundle savedInstanceState) {
 			View v = inflater.inflate(R.layout.fragment_crime, parent, false);
+
+			//включает UP
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+				if (NavUtils.getParentActivityName(getActivity()) != null) {
+					getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+				}
+			}
+
 
 			mTitleField = (EditText)v.findViewById(R.id.crime_title);
 			mTitleField.setText(mCrime.getTitle());
@@ -91,10 +105,10 @@ public  class CrimeFragment extends Fragment {
 				public void onClick(View v){
 					FragmentManager fm =getActivity()
 							.getSupportFragmentManager();
-					TimePickerFragment dialog = TimePickerFragment
+					TimePickerFragment dialog1 = TimePickerFragment
 							.newInstance(mCrime.getDate());
-					dialog.setTargetFragment(CrimeFragment.this, REQUEST_DATE);
-					dialog.show(fm, DIALOG_TIME);
+					dialog1.setTargetFragment(CrimeFragment.this, REQUEST_TIME);
+					dialog1.show(fm, DIALOG_TIME);
 				}
 			});
 
@@ -129,11 +143,27 @@ public  class CrimeFragment extends Fragment {
 						.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
 				mCrime.setDate(date);
 				updateDate();
-			} else if (requestCode == REQUEST_TIME) {
-				Date date = (Date)data.getSerializableExtra(TimePickerFragment.EXTRA_TIME);
-				mCrime.setDate(date);
-				updateDate();
+			} else {
+				if (requestCode == REQUEST_TIME) {
+					Date date = (Date)data.getSerializableExtra(TimePickerFragment.EXTRA_TIME);
+					mCrime.setDate(date);
+					updateDate();
+				}
 			}
 		}
+
+	//Button UP
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch (item.getItemId()){
+			case android.R.id.home:
+				if (NavUtils.getParentActivityName(getActivity()) != null){
+					NavUtils.navigateUpFromSameTask(getActivity());
+				}
+				return  true;
+			default:
+				return  super.onOptionsItemSelected(item);
+		}
+	}
 
 	}

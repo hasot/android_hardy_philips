@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/dmitry/Программки /CriminalIntent2/app/src/main/AndroidManifest.xml:2:1-29:12
+ADDED from /home/dmitry/Программки /CriminalIntent2/app/src/main/AndroidManifest.xml:2:1-31:12
 	package
 		ADDED from /home/dmitry/Программки /CriminalIntent2/app/src/main/AndroidManifest.xml:3:5-47
 		INJECTED from /home/dmitry/Программки /CriminalIntent2/app/src/main/AndroidManifest.xml
@@ -14,7 +14,7 @@ ADDED from /home/dmitry/Программки /CriminalIntent2/app/src/main/Andro
 	xmlns:android
 		ADDED from /home/dmitry/Программки /CriminalIntent2/app/src/main/AndroidManifest.xml:2:11-69
 application
-ADDED from /home/dmitry/Программки /CriminalIntent2/app/src/main/AndroidManifest.xml:8:5-27:19
+ADDED from /home/dmitry/Программки /CriminalIntent2/app/src/main/AndroidManifest.xml:8:5-29:19
 	android:label
 		ADDED from /home/dmitry/Программки /CriminalIntent2/app/src/main/AndroidManifest.xml:11:9-41
 	android:supportsRtl
@@ -40,11 +40,17 @@ ADDED from /home/dmitry/Программки /CriminalIntent2/app/src/main/Andro
 	android:name
 		ADDED from /home/dmitry/Программки /CriminalIntent2/app/src/main/AndroidManifest.xml:17:27-74
 activity#com.raywritescode.criminalintent.CrimePagerActivity
-ADDED from /home/dmitry/Программки /CriminalIntent2/app/src/main/AndroidManifest.xml:20:9-26:20
+ADDED from /home/dmitry/Программки /CriminalIntent2/app/src/main/AndroidManifest.xml:20:9-28:20
 	android:label
 		ADDED from /home/dmitry/Программки /CriminalIntent2/app/src/main/AndroidManifest.xml:21:13-45
 	android:name
 		ADDED from /home/dmitry/Программки /CriminalIntent2/app/src/main/AndroidManifest.xml:20:19-53
+meta-data#android.support.PARENT_ACTIVITY
+ADDED from /home/dmitry/Программки /CriminalIntent2/app/src/main/AndroidManifest.xml:22:13-23:53
+	android:value
+		ADDED from /home/dmitry/Программки /CriminalIntent2/app/src/main/AndroidManifest.xml:23:17-51
+	android:name
+		ADDED from /home/dmitry/Программки /CriminalIntent2/app/src/main/AndroidManifest.xml:22:24-70
 uses-sdk
 INJECTED from /home/dmitry/Программки /CriminalIntent2/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 	android:targetSdkVersion
