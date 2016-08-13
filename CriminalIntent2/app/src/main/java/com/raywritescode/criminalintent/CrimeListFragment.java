@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ public class CrimeListFragment extends ListFragment {
 	private static final String TAG = "CrimeListFragment";
 
 	private ArrayList<Crime> mCrimes;
+	private Button createCrimeButton;
 
 	private boolean mSubtitleVisible;
 	public static final String EXTRA_CRIME_ID =
@@ -41,7 +43,9 @@ public class CrimeListFragment extends ListFragment {
 		mCrimes = CrimeLab.get(getActivity()).getCrimes();
 
 		CrimeAdapter adapter = new CrimeAdapter(mCrimes);
+
 		setListAdapter(adapter);
+
 
 	}
 
@@ -49,18 +53,28 @@ public class CrimeListFragment extends ListFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup patent,
 							 Bundle savedInstanceState){
-		View v = super.onCreateView(inflater, patent, savedInstanceState);
+		View v = inflater.inflate(R.layout.fragment_crime_list, patent, false);
+
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
 			if (mSubtitleVisible){
 				getActivity().getActionBar().setSubtitle(R.string.subtitle);
 			}
 		}
+		createCrimeButton = (Button)v.findViewById(R.id.fragment_crime_create);
+		createCrimeButton.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				showCreateCrime();
+			}
+		});
 		return v;
 	}
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id){
 		Crime c = ((CrimeAdapter)getListAdapter()).getItem(position);
+
 		//Запускаем CramePagesActivity с обьектом Crime Чтобы слайдилось =)
 		Intent i = new Intent(getActivity(), CrimePagerActivity.class);
 		i.putExtra(CrimeFragment.EXTRA_CRIME_ID, c.getId());
@@ -136,5 +150,13 @@ public class CrimeListFragment extends ListFragment {
 			default:
 				return super.onOptionsItemSelected(item);
 		}
+	}
+
+	private void showCreateCrime() {
+		Crime crime = new Crime();
+		CrimeLab.get(getActivity()).addCrime(crime);
+		Intent i = new Intent(getActivity(), CrimePagerActivity.class);
+		i.putExtra(CrimeFragment.EXTRA_CRIME_ID, crime.getId());
+		startActivityForResult(i, 0);
 	}
 }
