@@ -17,7 +17,7 @@
     <string name="crimes_title">Crimes</string>
     <string name="date_picker_title">Date of crime</string>
     <string name="date_picker_title2">Hour of crime</string>
-    <string name="delete_crime">Delete</string>
+    <string name="delete_crime">Delete Crime </string>
     <string name="empty_list">Clean</string>
     <string name="hide_subtitle">Hide Subtitle</string>
     <string name="new_crime">New Crime</string>
